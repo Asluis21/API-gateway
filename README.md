@@ -1,2 +1,2 @@
 # API-gateway
-An API gateway to replicate the functionalities of an existing one witnin a microservices architecture context
+An API Gateway designed to replicate the functionalities of an existing one within the context of a microservices architecture.
