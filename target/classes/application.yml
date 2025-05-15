@@ -1,0 +1,14 @@
+spring:
+    cloud:
+        gateway:
+            routes:
+                - id: user-service
+                  uri: https://0fef070d-7df6-4bea-8793-079e51720078.mock.pstmn.io
+                  predicates:
+                    - Path=/users/**
+                
+                - id: order-service
+                  uri: http://localhost:8082
+                  predicates:
+                    - Path=/orders/**
+               
