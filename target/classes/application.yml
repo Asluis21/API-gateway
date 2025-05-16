@@ -8,7 +8,7 @@ spring:
                     - Path=/users/**
                 
                 - id: order-service
-                  uri: http://localhost:8082
+                  uri: https://56e0e30a-1376-4936-894e-cbd00c76258a.mock.pstmn.io
                   predicates:
                     - Path=/orders/**
                

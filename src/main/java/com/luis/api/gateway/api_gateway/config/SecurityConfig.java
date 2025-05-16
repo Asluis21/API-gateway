@@ -2,6 +2,7 @@ package com.luis.api.gateway.api_gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity.FormLoginSpec;
@@ -17,7 +18,8 @@ public class SecurityConfig {
         return http
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
             .authorizeExchange(exchanges -> exchanges
-                .pathMatchers("/users/info").permitAll()
+                .pathMatchers(HttpMethod.GET, "/users/info").permitAll()
+                .pathMatchers(HttpMethod.GET, "/orders/info").permitAll()
                 .anyExchange().authenticated()
             )
             .httpBasic(HttpBasicSpec::disable)
