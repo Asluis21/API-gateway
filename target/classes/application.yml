@@ -11,4 +11,10 @@ spring:
                   uri: https://56e0e30a-1376-4936-894e-cbd00c76258a.mock.pstmn.io
                   predicates:
                     - Path=/orders/**
+                
+                - id: healthMonitor-service
+                  uri: https://4d1cf471-7677-49f8-8899-d374510fc1ed.mock.pstmn.io
+                  predicates:
+                    - Path=/healthMonitor/**
+                
                

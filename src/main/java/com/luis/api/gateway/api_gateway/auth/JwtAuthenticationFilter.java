@@ -47,7 +47,7 @@ public class JwtAuthenticationFilter implements WebFilter {
         log.info("JWT Authentication Filter: " + token);
         log.info("Request Path: " + path);
 
-        if(path.startsWith("/users/info")) {
+        if(path.startsWith("/healthMonitor/status")) {
             // Allow access to the /users/info endpoint without authentication
             return chain.filter(exchange);
         }
@@ -65,10 +65,11 @@ public class JwtAuthenticationFilter implements WebFilter {
         }
 
         String username = jwtHelper.getUsername(token);
+
         List<GrantedAuthority> authorities = jwtHelper.getRoles(token)
-            .stream()
-            .map(SimpleGrantedAuthority::new)
-            .collect(Collectors.toList());
+        .stream()
+        .map(SimpleGrantedAuthority::new)
+        .collect(Collectors.toList());
         
         Authentication auth = new UsernamePasswordAuthenticationToken(username, null, authorities);
 

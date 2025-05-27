@@ -47,7 +47,8 @@ public class JwtHelper {
             .build()
             .parseClaimsJws(token)
             .getBody();
-        Object rolesObject = claims.get("roles");
+        
+            Object rolesObject = claims.get("roles");
         
         if (rolesObject instanceof List<?>) {
             // If roles were stored as a JSON array
@@ -59,6 +60,7 @@ public class JwtHelper {
             // If roles were stored as a comma-separated String
             return Arrays.asList(((String) rolesObject).split(","));
         }
+
         return Collections.emptyList();
     }
 }

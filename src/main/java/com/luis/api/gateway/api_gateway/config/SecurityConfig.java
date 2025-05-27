@@ -26,8 +26,16 @@ public class SecurityConfig {
         return http
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
             .authorizeExchange(exchanges -> exchanges
-                .pathMatchers(HttpMethod.GET, "/users/info").permitAll()
-                .pathMatchers(HttpMethod.GET, "/orders/info").authenticated()
+
+                // PUBLIC ENDPOINT
+                .pathMatchers(HttpMethod.GET, "/healthMonitor/status").permitAll()
+                
+                // AUTHENTICATED ENDPOINT
+                .pathMatchers(HttpMethod.GET, "/users/info/*").authenticated()
+                
+                // ROLE_ADMIN ENDPOINT
+                .pathMatchers(HttpMethod.GET, "/users/stats").hasRole("ADMIN")
+                
                 .anyExchange().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
